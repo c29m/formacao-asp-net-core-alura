@@ -10,6 +10,11 @@ public class FilmeController : ControllerBase
 
     private static List<Filme> filmes = new List<Filme>();
 
+    [HttpGet]
+    public IEnumerable<Filme> listaFilmes()
+    {
+        return filmes;
+    }
     [HttpPost]
     public void AdcionaFilme([FromBody] Filme filme)
     {
