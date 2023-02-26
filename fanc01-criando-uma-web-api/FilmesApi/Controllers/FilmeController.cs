@@ -12,9 +12,11 @@ public class FilmeController : ControllerBase
     private static int id = 0;
 
     [HttpGet]
-    public IEnumerable<Filme> listaFilmes()
+    public IEnumerable<Filme> listaFilmes(
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 50)
     {
-        return filmes;
+        return filmes.Skip(skip).Take(take);
     }
 
     [HttpGet("{id}")]
