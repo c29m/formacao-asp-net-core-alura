@@ -9,15 +9,24 @@ public class FilmeController : ControllerBase
 {
 
     private static List<Filme> filmes = new List<Filme>();
+    private static int id = 0;
 
     [HttpGet]
     public IEnumerable<Filme> listaFilmes()
     {
         return filmes;
     }
+
+    [HttpGet("{id}")]
+    public Filme? listaFilmePorId(int id)
+    {
+        return filmes.FirstOrDefault(filme => filme.Id == id);
+    }
+
     [HttpPost]
     public void AdcionaFilme([FromBody] Filme filme)
     {
+        filme.Id = ++id;
         filmes.Add(filme);
 
         Console.WriteLine(filme.Titulo);
